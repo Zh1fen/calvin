@@ -51,8 +51,9 @@ Download dataset (choose which split you want to download with the argument `D`,
 If you want to get started without downloading the whole dataset, use the argument `debug` to download a small debug dataset (1.3 GB).
 ```bash
 $ cd $CALVIN_ROOT/dataset
-$ sh download_data.sh D | ABC | ABCD | debug
+$ bash download_data.sh D  # or ABC / ABCD / debug
 ```
+Use `bash` here as well, since the download scripts are written with `#!/bin/bash`.
 ##	:weight_lifting_man: Train Baseline Agent
 Train baseline models:
 ```bash

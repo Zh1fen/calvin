@@ -9,24 +9,26 @@ We provide a download script to download the three different splits or a small d
 **1.** [Split D->D](http://calvin.cs.uni-freiburg.de/dataset/task_D_D.zip) (166 GB):
 ```bash
 $ cd $CALVIN_ROOT/dataset
-$ sh download_data.sh D
+$ bash download_data.sh D
 ```
 **2.** [Split ABC->D](http://calvin.cs.uni-freiburg.de/dataset/task_ABC_D.zip) (517 GB)
 ```bash
 $ cd $CALVIN_ROOT/dataset
-$ sh download_data.sh ABC
+$ bash download_data.sh ABC
 ```
 **3.** [Split ABCD->D](http://calvin.cs.uni-freiburg.de/dataset/task_ABCD_D.zip) (656 GB)
 ```bash
 $ cd $CALVIN_ROOT/dataset
-$ sh download_data.sh ABCD
+$ bash download_data.sh ABCD
 ```
 
 **4.** [Small debug dataset](http://calvin.cs.uni-freiburg.de/dataset/calvin_debug_dataset.zip) (1.3 GB)
 ```bash
 $ cd $CALVIN_ROOT/dataset
-$ sh download_data.sh debug
+$ bash download_data.sh debug
 ```
+
+Use `bash` when invoking these scripts. They currently declare `#!/bin/bash`, so `sh` can be shell-dependent on other machines.
 
 YOu can verify the integrity of the downloaded zips with the following commands:
 ```bash
@@ -40,7 +42,7 @@ Since Sep 16 2022, additional language embeddings are part of the dataset on the
 you can manually download the embeddings by running
 ```
 cd $CALVIN_ROOT/dataset
-sh download_lang_embeddings.sh D | ABC | ABCD
+bash download_lang_embeddings.sh D  # or ABC / ABCD
 ```
 Currently, the available embeddings are:
 - lang_all-distilroberta-v1

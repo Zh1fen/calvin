@@ -29,9 +29,23 @@ Install requirements:
 $ cd $CALVIN_ROOT
 $ conda create -n calvin_venv python=3.8  # or use virtualenv
 $ conda activate calvin_venv
-$ sh install.sh
+$ git submodule update --init --recursive
+$ which python
+$ python -V
+$ PYTHON_BIN=$(which python) bash install.sh
 ```
-If you encounter problems installing pyhash, you might have to downgrade setuptools to a version below 58.
+Expected interpreter: Python 3.8 from the active environment. If `which python` does not point into your `calvin_venv`, fix the shell environment first or pass the full path explicitly, e.g. `PYTHON_BIN=/path/to/calvin_venv/bin/python bash install.sh`.
+
+`install.sh` installs:
+- `setuptools<58` to keep `pyhash` buildable
+- `cmake==3.18.4.post1` for `MulticoreTSNE`
+- editable installs for `calvin_env/tacto`, `calvin_env`, and `calvin_models`
+
+Common installation failures:
+- `Missing calvin_env submodule checkout` or `Missing tacto package`: run `git submodule update --init --recursive`.
+- `use_2to3 is invalid` while building `pyhash`: make sure the install runs with `setuptools<58` from `install.sh`.
+- `CMake Error: Unknown argument --` while building `MulticoreTSNE`: rerun with `PYTHON_BIN=$(which python) bash install.sh` so the environment-local `cmake` is first on `PATH`.
+- `ProxyError` or package download failures: the machine cannot reach the Python package index; retry with working network or a reachable internal mirror.
 
 Download dataset (choose which split you want to download with the argument `D`, `ABC` or `ABCD`): \
 If you want to get started without downloading the whole dataset, use the argument `debug` to download a small debug dataset (1.3 GB).
